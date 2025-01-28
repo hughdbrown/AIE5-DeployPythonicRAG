@@ -33,9 +33,7 @@ class RetrievalAugmentedQAPipeline:
     async def arun_pipeline(self, user_query: str):
         context_list = self.vector_db_retriever.search_by_text(user_query, k=4)
 
-        context_prompt = ""
-        for context in context_list:
-            context_prompt += context[0] + "\n"
+        context_prompt = "\n".join([context[0] for context in context_list])
 
         formatted_system_prompt = system_role_prompt.create_message()
 
