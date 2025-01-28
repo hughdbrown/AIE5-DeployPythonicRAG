@@ -1,3 +1,5 @@
+import tempfile
+import shutil
 import os
 
 import chainlit as cl
@@ -54,8 +56,6 @@ text_splitter = CharacterTextSplitter()
 
 
 def process_file(file: AskFileResponse):
-    import tempfile
-    import shutil
     
     print(f"Processing file: {file.name}")
     
@@ -87,16 +87,16 @@ def process_file(file: AskFileResponse):
 
 @cl.on_chat_start
 async def on_chat_start():
-    files = None
-
     # Wait for the user to upload a file
-    while files == None:
+    while True:
         files = await cl.AskFileMessage(
             content="Please upload a Text or PDF file to begin!",
             accept=["text/plain", "application/pdf"],
             max_size_mb=2,
             timeout=180,
         ).send()
+        if files:
+            break
 
     file = files[0]
 
