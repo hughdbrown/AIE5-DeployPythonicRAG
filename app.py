@@ -7,7 +7,7 @@ from chainlit.types import AskFileResponse
 
 from aimakerspace.text_utils import (
     CharacterTextSplitter,
-    PDFLoader,
+    PDFFileLoader,
     TextFileLoader,
 )
 from aimakerspace.openai_utils.chatmodel import ChatOpenAI
@@ -68,7 +68,7 @@ def process_file(file: AskFileResponse):
         
         # Create appropriate loader
         if file.name.lower().endswith('.pdf'):
-            loader = PDFLoader(temp_file.name)
+            loader = PDFFileLoader(temp_file.name)
         else:
             loader = TextFileLoader(temp_file.name)
             
