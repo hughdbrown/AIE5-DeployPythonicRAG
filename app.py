@@ -1,16 +1,21 @@
 import os
-from typing import List
-from chainlit.types import AskFileResponse
-from aimakerspace.text_utils import CharacterTextSplitter, TextFileLoader, PDFLoader
-from aimakerspace.openai_utils.prompts import (
-    UserRolePrompt,
-    SystemRolePrompt,
-    AssistantRolePrompt,
-)
-from aimakerspace.openai_utils.embedding import EmbeddingModel
-from aimakerspace.vectordatabase import VectorDatabase
-from aimakerspace.openai_utils.chatmodel import ChatOpenAI
+
 import chainlit as cl
+from chainlit.types import AskFileResponse
+
+from aimakerspace.text_utils import (
+    CharacterTextSplitter,
+    PDFLoader,
+    TextFileLoader,
+)
+from aimakerspace.openai_utils.chatmodel import ChatOpenAI
+# from aimakerspace.openai_utils.embedding import EmbeddingModel
+from aimakerspace.openai_utils.prompts import (
+    # AssistantRolePrompt,
+    SystemRolePrompt,
+    UserRolePrompt,
+)
+from aimakerspace.vectordatabase import VectorDatabase
 
 system_template = """\
 Use the following context to answer a users question. If you cannot find the answer in the context, say you don't know the answer."""
