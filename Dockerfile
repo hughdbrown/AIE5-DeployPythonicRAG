@@ -25,7 +25,7 @@ COPY --chown=user . $HOME/app
 RUN uv sync
 
 # Expose the port
-EXPOSE 7860
+EXPOSE 8000
 
 # Run the app
-CMD ["uv", "run", "chainlit", "run", "app.py", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["uv", "run", "chainlit", "run", "app.py", "--host", "0.0.0.0", "--port", "8000"]
